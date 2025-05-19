@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\CME8000.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\CME8000.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Work.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\System_Exit.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Setup.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Prohibit.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Operator.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\OK.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Motion.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Monitor.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Manual.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Log.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\LG_symbol.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Initial.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\InOut.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Close.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Cancel.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw3_UR.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw3_UL.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw3_DR.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw3_DL.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw2_UP.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw2_RT.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw2_LF.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw2_DN.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw1_UP.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw1_RT.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw1_LF.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw1_DN.ico">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\SynapseLogo.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\SynapseImage.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\LGInnotek_T6.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\EquipWork.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\EquipError.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\EquipDoor.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw4_Up.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw4_Rt.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw4_Lf.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\Arw4_Dn.bmp">
+      <Filter>리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CME8000.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CME8000Dlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AJinAXL.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AJinDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AlarmDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BarcodeLot.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="InitialDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Inspector.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyPadDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFile.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LoopTimer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualLoadDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualUnloadDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorInOutDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorInOutTabDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorLogDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorMotionDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitorMotionTabDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MsgBoxDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NoWorkDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NumPadDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PasswordDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ProhibitDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceInit.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SequenceMain.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupEquipDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupInOutDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupInOutTabDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMotionDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMotionTabDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMoveDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMoveTab1Dlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMoveTab2Dlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SetupMoveTab3Dlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="VersionDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkInfoDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualCapDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualIndexDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="AviUDP.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadCell.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MESInterface.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CME8000.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CME8000Dlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AJinAXL.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AlarmDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BarcodeLot.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="InitialDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Inspector.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyPadDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogFile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LoopTimer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualLoadDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualUnloadDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorInOutDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorInOutTabDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorLogDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorMotionDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MonitorMotionTabDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MsgBoxDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NoWorkDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NumPadDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PasswordDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ProhibitDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SequenceInit.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SequenceMain.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupEquipDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupInOutDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupInOutTabDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMotionDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMotionTabDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMoveDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMoveTab1Dlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMoveTab2Dlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SetupMoveTab3Dlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="VersionDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkInfoDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualCapDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualIndexDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AviUDP.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadCell.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MESInterface.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CME8000.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
