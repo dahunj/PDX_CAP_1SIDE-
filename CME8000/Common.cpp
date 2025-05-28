@@ -687,9 +687,9 @@ void CCommon::Set_LoadPickerUp()
 	pDY06->oLoadPickerDown01 = FALSE;
 	pDY06->oLoadPickerDown02 = FALSE;
 	pDY06->oLoadPickerDown03 = FALSE;
-	pDY06->oLoadPickerDown04 = FALSE;
-	pDY06->oLoadPickerDown05 = FALSE;
-	pDY06->oLoadPickerDown06 = FALSE;
+	if (gData.nPickerUseCnt > 3 ) pDY06->oLoadPickerDown04 = FALSE;
+	if (gData.nPickerUseCnt > 4 ) pDY06->oLoadPickerDown05 = FALSE;
+	if (gData.nPickerUseCnt > 5 ) pDY06->oLoadPickerDown06 = FALSE;
 	g_objAJinAXL.Write_Output(6);
 }
 
@@ -749,9 +749,9 @@ void CCommon::Set_LoadPickerOpen()
 	pDY06->oLoadPickerGrip01 = FALSE;
 	pDY06->oLoadPickerGrip02 = FALSE;
 	pDY06->oLoadPickerGrip03 = FALSE;
-	pDY06->oLoadPickerGrip04 = FALSE;
-	pDY06->oLoadPickerGrip05 = FALSE;
-	pDY06->oLoadPickerGrip06 = FALSE;
+	if (gData.nPickerUseCnt > 3 ) pDY06->oLoadPickerGrip04 = FALSE;
+	if (gData.nPickerUseCnt > 4 ) pDY06->oLoadPickerGrip05 = FALSE;
+	if (gData.nPickerUseCnt > 5 ) pDY06->oLoadPickerGrip06 = FALSE;
 	g_objAJinAXL.Write_Output(6);
 }
 
@@ -789,34 +789,34 @@ void CCommon::Set_LoadPickerDownMulti(int nNo, int nCnt)
 		if (nCnt > 0) pDY06->oLoadPickerDown01 = TRUE;
 		if (nCnt > 1) pDY06->oLoadPickerDown02 = TRUE;
 		if (nCnt > 2) pDY06->oLoadPickerDown03 = TRUE;
-		if (nCnt > 3) pDY06->oLoadPickerDown04 = TRUE;
-		if (nCnt > 4) pDY06->oLoadPickerDown05 = TRUE;
-		if (nCnt > 5) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 3) { if (nCnt > 3) pDY06->oLoadPickerDown04 = TRUE; }
+		if (gData.nPickerUseCnt > 4) { if (nCnt > 4) pDY06->oLoadPickerDown05 = TRUE; }
+		if (gData.nPickerUseCnt > 5) { if (nCnt > 5) pDY06->oLoadPickerDown06 = TRUE; }
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0) pDY06->oLoadPickerDown02 = TRUE;
 		if (nCnt > 1) pDY06->oLoadPickerDown03 = TRUE;
-		if (nCnt > 2) pDY06->oLoadPickerDown04 = TRUE;
-		if (nCnt > 3) pDY06->oLoadPickerDown05 = TRUE;
-		if (nCnt > 4) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 3) { if (nCnt > 2) pDY06->oLoadPickerDown04 = TRUE; }
+		if (gData.nPickerUseCnt > 4) { if (nCnt > 3) pDY06->oLoadPickerDown05 = TRUE; }
+		if (gData.nPickerUseCnt > 5) { if (nCnt > 4) pDY06->oLoadPickerDown06 = TRUE; }
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0) pDY06->oLoadPickerDown03 = TRUE;
-		if (nCnt > 1) pDY06->oLoadPickerDown04 = TRUE;
-		if (nCnt > 2) pDY06->oLoadPickerDown05 = TRUE;
-		if (nCnt > 3) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 3) { if (nCnt > 1) pDY06->oLoadPickerDown04 = TRUE; }
+		if (gData.nPickerUseCnt > 4) { if (nCnt > 2) pDY06->oLoadPickerDown05 = TRUE; }
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 3) pDY06->oLoadPickerDown06 = TRUE; }
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0) pDY06->oLoadPickerDown04 = TRUE;
-		if (nCnt > 1) pDY06->oLoadPickerDown05 = TRUE;
-		if (nCnt > 2) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 0) pDY06->oLoadPickerDown04 = TRUE;}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 1) pDY06->oLoadPickerDown05 = TRUE;}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 2) pDY06->oLoadPickerDown06 = TRUE;}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0) pDY06->oLoadPickerDown05 = TRUE;
-		if (nCnt > 1) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 0) pDY06->oLoadPickerDown05 = TRUE;}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 1) pDY06->oLoadPickerDown06 = TRUE;}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0) pDY06->oLoadPickerDown06 = TRUE;
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 0) pDY06->oLoadPickerDown06 = TRUE;}
 	}
 
 	g_objAJinAXL.Write_Output(6);
@@ -830,34 +830,34 @@ BOOL CCommon::Get_LoadPickerDownMulti(int nNo, int nCnt)
 		if (nCnt > 0 && (pDX06->iLoadPickerUp01 || !pDX06->iLoadPickerDown01)) { gAlm.nLDPickerNo = 1; return FALSE; }
 		if (nCnt > 1 && (pDX06->iLoadPickerUp02 || !pDX06->iLoadPickerDown02)) { gAlm.nLDPickerNo = 2; return FALSE; }
 		if (nCnt > 2 && (pDX06->iLoadPickerUp03 || !pDX06->iLoadPickerDown03)) { gAlm.nLDPickerNo = 3; return FALSE; }
-		if (nCnt > 3 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }
-		if (nCnt > 4 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-		if (nCnt > 5 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 3 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 4 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 5 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && (pDX06->iLoadPickerUp02 || !pDX06->iLoadPickerDown02)) { gAlm.nLDPickerNo = 2; return FALSE; }
 		if (nCnt > 1 && (pDX06->iLoadPickerUp03 || !pDX06->iLoadPickerDown03)) { gAlm.nLDPickerNo = 3; return FALSE; }
-		if (nCnt > 2 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }
-		if (nCnt > 3 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-		if (nCnt > 4 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 2 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 3 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 4 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && (pDX06->iLoadPickerUp03 || !pDX06->iLoadPickerDown03)) { gAlm.nLDPickerNo = 3; return FALSE; }
-		if (nCnt > 1 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }
-		if (nCnt > 2 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-		if (nCnt > 3 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 1 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 2 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 3 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }
-		if (nCnt > 1 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-		if (nCnt > 2 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3) { if (nCnt > 0 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 1 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 2 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-		if (nCnt > 1 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 0 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 1 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 0 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	}
 
 	return TRUE;
@@ -997,9 +997,9 @@ BOOL CCommon::Get_CapPickerUp(int nNo)
 		if (!pDX07->iCapPickerUp01 || pDX07->iCapPickerDown01) { gAlm.nCapPickeNo = 1; return FALSE; }
 		if (!pDX07->iCapPickerUp02 || pDX07->iCapPickerDown02) { gAlm.nCapPickeNo = 2; return FALSE; }
 		if (!pDX07->iCapPickerUp03 || pDX07->iCapPickerDown03) { gAlm.nCapPickeNo = 3; return FALSE; }
-		if (!pDX07->iCapPickerUp04 || pDX07->iCapPickerDown04) { gAlm.nCapPickeNo = 4; return FALSE; }
-		if (!pDX07->iCapPickerUp05 || pDX07->iCapPickerDown05) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (!pDX07->iCapPickerUp06 || pDX07->iCapPickerDown06) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3 && (!pDX07->iCapPickerUp04 || pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }
+		if (gData.nPickerUseCnt > 4 && (!pDX07->iCapPickerUp05 || pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
+		if (gData.nPickerUseCnt > 5 && (!pDX07->iCapPickerUp06 || pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
 	}
 	else if (nNo ==  1 && (!pDX07->iCapPickerUp01 || pDX07->iCapPickerDown01)) { gAlm.nCapPickeNo = 1; return FALSE; }
 	else if (nNo ==  2 && (!pDX07->iCapPickerUp02 || pDX07->iCapPickerDown02)) { gAlm.nCapPickeNo = 2; return FALSE; }
@@ -1029,9 +1029,9 @@ BOOL CCommon::Get_CapPickerNormal(int nNo)
 		if (pDX07->iCapPickerTurn01) return FALSE;
 		if (pDX07->iCapPickerTurn02) return FALSE;
 		if (pDX07->iCapPickerTurn03) return FALSE;
-		if (pDX07->iCapPickerTurn04) return FALSE;
-		if (pDX07->iCapPickerTurn05) return FALSE;
-		if (pDX07->iCapPickerTurn06) return FALSE;
+		if (gData.nPickerUseCnt > 3 && pDX07->iCapPickerTurn04) return FALSE;
+		if (gData.nPickerUseCnt > 4 && pDX07->iCapPickerTurn05) return FALSE;
+		if (gData.nPickerUseCnt > 5 && pDX07->iCapPickerTurn06) return FALSE;
 		return TRUE;
 	}
 	else if (nNo ==  1 && !pDX07->iCapPickerTurn01) return TRUE;
@@ -1172,34 +1172,34 @@ BOOL CCommon::Get_CapPickerDownMulti(int nNo, int nCnt)
 		if (nCnt > 0 && (pDX07->iCapPickerUp01 || !pDX07->iCapPickerDown01)) { gAlm.nCapPickeNo = 1; return FALSE; }
 		if (nCnt > 1 && (pDX07->iCapPickerUp02 || !pDX07->iCapPickerDown02)) { gAlm.nCapPickeNo = 2; return FALSE; }
 		if (nCnt > 2 && (pDX07->iCapPickerUp03 || !pDX07->iCapPickerDown03)) { gAlm.nCapPickeNo = 3; return FALSE; }
-		if (nCnt > 3 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }
-		if (nCnt > 4 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (nCnt > 5 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 3 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 4 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 5 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && (pDX07->iCapPickerUp02 || !pDX07->iCapPickerDown02)) { gAlm.nCapPickeNo = 2; return FALSE; }
 		if (nCnt > 1 && (pDX07->iCapPickerUp03 || !pDX07->iCapPickerDown03)) { gAlm.nCapPickeNo = 3; return FALSE; }
-		if (nCnt > 2 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }
-		if (nCnt > 3 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (nCnt > 4 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 2 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 3 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 4 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && (pDX07->iCapPickerUp03 || !pDX07->iCapPickerDown03)) { gAlm.nCapPickeNo = 3; return FALSE; }
-		if (nCnt > 1 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }
-		if (nCnt > 2 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (nCnt > 3 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 1 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 2 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 3 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }
-		if (nCnt > 1 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (nCnt > 2 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 0 && (pDX07->iCapPickerUp04 || !pDX07->iCapPickerDown04)) { gAlm.nCapPickeNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 1 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 2 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }
-		if (nCnt > 1 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 4){if (nCnt > 0 && (pDX07->iCapPickerUp05 || !pDX07->iCapPickerDown05)) { gAlm.nCapPickeNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 1 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 5){if (nCnt > 0 && (pDX07->iCapPickerUp06 || !pDX07->iCapPickerDown06)) { gAlm.nCapPickeNo = 6; return FALSE; }}
 	}
 
 	return TRUE;
@@ -1260,34 +1260,34 @@ BOOL CCommon::Get_CapPickerVacOnMulti(int nNo, int nCnt)
 		if (nCnt > 0 && !pDX07->iCapPickerVac01) return FALSE;
 		if (nCnt > 1 && !pDX07->iCapPickerVac02) return FALSE;
 		if (nCnt > 2 && !pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 3 && !pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 4 && !pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 5 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 3 && !pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 4 && !pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 5 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && !pDX07->iCapPickerVac02) return FALSE;
 		if (nCnt > 1 && !pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 2 && !pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 3 && !pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 4 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 2 && !pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 3 && !pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 4 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && !pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 1 && !pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 2 && !pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 3 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 1 && !pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 2 && !pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 3 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && !pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 1 && !pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 2 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 0 && !pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 1 && !pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 2 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && !pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 1 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 4){if (nCnt > 0 && !pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 1 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && !pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 5){if (nCnt > 0 && !pDX07->iCapPickerVac06) return FALSE;}
 	}
 
 	return TRUE;
@@ -1342,34 +1342,34 @@ BOOL CCommon::Get_CapPickerVacOffMulti(int nNo, int nCnt)
 		if (nCnt > 0 && pDX07->iCapPickerVac01) return FALSE;
 		if (nCnt > 1 && pDX07->iCapPickerVac02) return FALSE;
 		if (nCnt > 2 && pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 3 && pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 4 && pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 5 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 3 && pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 4 && pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 5 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && pDX07->iCapPickerVac02) return FALSE;
 		if (nCnt > 1 && pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 2 && pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 3 && pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 4 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3) {if (nCnt > 2 && pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4) {if (nCnt > 3 && pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 4 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && pDX07->iCapPickerVac03) return FALSE;
-		if (nCnt > 1 && pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 2 && pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 3 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 1 && pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 2 && pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 3 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && pDX07->iCapPickerVac04) return FALSE;
-		if (nCnt > 1 && pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 2 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 0 && pDX07->iCapPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 1 && pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 2 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && pDX07->iCapPickerVac05) return FALSE;
-		if (nCnt > 1 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 4){if (nCnt > 0 && pDX07->iCapPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 1 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && pDX07->iCapPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 5){if (nCnt > 0 && pDX07->iCapPickerVac06) return FALSE;}
 	}
 
 	return TRUE;
@@ -1837,34 +1837,34 @@ BOOL CCommon::Get_UnloadPickerDownMulti(int nNo, int nCnt)
 		if (nCnt > 0 && (pDX10->iUnloadPickerUp01 || !pDX10->iUnloadPickerDown01)) { gAlm.nUNPickerNo = 1; return FALSE; }
 		if (nCnt > 1 && (pDX10->iUnloadPickerUp02 || !pDX10->iUnloadPickerDown02)) { gAlm.nUNPickerNo = 2; return FALSE; }
 		if (nCnt > 2 && (pDX10->iUnloadPickerUp03 || !pDX10->iUnloadPickerDown03)) { gAlm.nUNPickerNo = 3; return FALSE; }
-		if (nCnt > 3 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }
-		if (nCnt > 4 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }
-		if (nCnt > 5 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 3 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 4 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 5 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && (pDX10->iUnloadPickerUp02 || !pDX10->iUnloadPickerDown02)) { gAlm.nUNPickerNo = 2; return FALSE; }
 		if (nCnt > 1 && (pDX10->iUnloadPickerUp03 || !pDX10->iUnloadPickerDown03)) { gAlm.nUNPickerNo = 3; return FALSE; }
-		if (nCnt > 2 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }
-		if (nCnt > 3 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }
-		if (nCnt > 4 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 2 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 3 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 4 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && (pDX10->iUnloadPickerUp03 || !pDX10->iUnloadPickerDown03)) { gAlm.nUNPickerNo = 3; return FALSE; }
-		if (nCnt > 1 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }
-		if (nCnt > 2 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }
-		if (nCnt > 3 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 1 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 2 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 3 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }
-		if (nCnt > 1 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }
-		if (nCnt > 2 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3){if (nCnt > 0 && (pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04)) { gAlm.nUNPickerNo = 4; return FALSE; }}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 1 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 2 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }
-		if (nCnt > 1 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 4){if (nCnt > 0 && (pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05)) { gAlm.nUNPickerNo = 5; return FALSE; }}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 1 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 5) {if (nCnt > 0 && (pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06)) { gAlm.nUNPickerNo = 6; return FALSE; }}
 	}
 
 	return TRUE;
@@ -1922,34 +1922,34 @@ BOOL CCommon::Get_UnloadPickerVacOffMulti(int nNo, int nCnt)
 		if (nCnt > 0 && pDX10->iUnloadPickerVac01) return FALSE;
 		if (nCnt > 1 && pDX10->iUnloadPickerVac02) return FALSE;
 		if (nCnt > 2 && pDX10->iUnloadPickerVac03) return FALSE;
-		if (nCnt > 3 && pDX10->iUnloadPickerVac04) return FALSE;
-		if (nCnt > 4 && pDX10->iUnloadPickerVac05) return FALSE;
-		if (nCnt > 5 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 3 && pDX10->iUnloadPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 4 && pDX10->iUnloadPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 5 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 	else if (nNo == 2) {
 		if (nCnt > 0 && pDX10->iUnloadPickerVac02) return FALSE;
 		if (nCnt > 1 && pDX10->iUnloadPickerVac03) return FALSE;
-		if (nCnt > 2 && pDX10->iUnloadPickerVac04) return FALSE;
-		if (nCnt > 3 && pDX10->iUnloadPickerVac05) return FALSE;
-		if (nCnt > 4 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 2 && pDX10->iUnloadPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 3 && pDX10->iUnloadPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 4 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 	else if (nNo == 3) {
 		if (nCnt > 0 && pDX10->iUnloadPickerVac03) return FALSE;
-		if (nCnt > 1 && pDX10->iUnloadPickerVac04) return FALSE;
-		if (nCnt > 2 && pDX10->iUnloadPickerVac05) return FALSE;
-		if (nCnt > 3 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 1 && pDX10->iUnloadPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 2 && pDX10->iUnloadPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 3 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 	else if (nNo == 4) {
-		if (nCnt > 0 && pDX10->iUnloadPickerVac04) return FALSE;
-		if (nCnt > 1 && pDX10->iUnloadPickerVac05) return FALSE;
-		if (nCnt > 2 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 3){if (nCnt > 0 && pDX10->iUnloadPickerVac04) return FALSE;}
+		if (gData.nPickerUseCnt > 4){if (nCnt > 1 && pDX10->iUnloadPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 2 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 	else if (nNo == 5) {
-		if (nCnt > 0 && pDX10->iUnloadPickerVac05) return FALSE;
-		if (nCnt > 1 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 4){if (nCnt > 0 && pDX10->iUnloadPickerVac05) return FALSE;}
+		if (gData.nPickerUseCnt > 5){if (nCnt > 1 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 	else if (nNo == 6) {
-		if (nCnt > 0 && pDX10->iUnloadPickerVac06) return FALSE;
+		if (gData.nPickerUseCnt > 5){if (nCnt > 0 && pDX10->iUnloadPickerVac06) return FALSE;}
 	}
 
 	return TRUE;
@@ -2138,9 +2138,9 @@ void CCommon::Set_InfoLoadPickerDown(int nPos, int nLine)
 	if (pInfo[0] > 0) pDY06->oLoadPickerDown01 = TRUE;
 	if (pInfo[1] > 0) pDY06->oLoadPickerDown02 = TRUE;
 	if (pInfo[2] > 0) pDY06->oLoadPickerDown03 = TRUE;
-	if (pInfo[3] > 0) pDY06->oLoadPickerDown04 = TRUE;
-	if (pInfo[4] > 0) pDY06->oLoadPickerDown05 = TRUE;
-	if (pInfo[5] > 0) pDY06->oLoadPickerDown06 = TRUE;
+	if (gData.nPickerUseCnt > 3) {if (pInfo[3] > 0) pDY06->oLoadPickerDown04 = TRUE;}
+	if (gData.nPickerUseCnt > 4) {if (pInfo[4] > 0) pDY06->oLoadPickerDown05 = TRUE;}
+	if (gData.nPickerUseCnt > 5) {if (pInfo[5] > 0) pDY06->oLoadPickerDown06 = TRUE;}
 
 	g_objAJinAXL.Write_Output(6);
 }
@@ -2156,9 +2156,9 @@ BOOL CCommon::Get_InfoLoadPickerDown(int nPos, int nLine)
 	if (pInfo[0] > 0 && (pDX06->iLoadPickerUp01 || !pDX06->iLoadPickerDown01)) { gAlm.nLDPickerNo = 1; return FALSE; }
 	if (pInfo[1] > 0 && (pDX06->iLoadPickerUp02 || !pDX06->iLoadPickerDown02)) { gAlm.nLDPickerNo = 2; return FALSE; }
 	if (pInfo[2] > 0 && (pDX06->iLoadPickerUp03 || !pDX06->iLoadPickerDown03)) { gAlm.nLDPickerNo = 3; return FALSE; }
-	if (pInfo[3] > 0 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }
-	if (pInfo[4] > 0 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }
-	if (pInfo[5] > 0 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3){if (pInfo[3] > 0 && (pDX06->iLoadPickerUp04 || !pDX06->iLoadPickerDown04)) { gAlm.nLDPickerNo = 4; return FALSE; }}
+	if (gData.nPickerUseCnt > 4){if (pInfo[4] > 0 && (pDX06->iLoadPickerUp05 || !pDX06->iLoadPickerDown05)) { gAlm.nLDPickerNo = 5; return FALSE; }}
+	if (gData.nPickerUseCnt > 5){if (pInfo[5] > 0 && (pDX06->iLoadPickerUp06 || !pDX06->iLoadPickerDown06)) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	return TRUE;
 }
 
@@ -2191,9 +2191,9 @@ BOOL CCommon::Get_InfoLoadPickerGrip(int nPos, int nLine)
 	if (pInfo[0] > 0 && pDX06->iLoadPickerOpen01) { gAlm.nLDPickerNo = 1; return FALSE; }
 	if (pInfo[1] > 0 && pDX06->iLoadPickerOpen02) { gAlm.nLDPickerNo = 2; return FALSE; }
 	if (pInfo[2] > 0 && pDX06->iLoadPickerOpen03) { gAlm.nLDPickerNo = 3; return FALSE; }
-	if (pInfo[3] > 0 && pDX06->iLoadPickerOpen04) { gAlm.nLDPickerNo = 4; return FALSE; }
-	if (pInfo[4] > 0 && pDX06->iLoadPickerOpen05) { gAlm.nLDPickerNo = 5; return FALSE; }
-	if (pInfo[5] > 0 && pDX06->iLoadPickerOpen06) { gAlm.nLDPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3){if (pInfo[3] > 0 && pDX06->iLoadPickerOpen04) { gAlm.nLDPickerNo = 4; return FALSE; }}
+	if (gData.nPickerUseCnt > 4){if (pInfo[4] > 0 && pDX06->iLoadPickerOpen05) { gAlm.nLDPickerNo = 5; return FALSE; }}
+	if (gData.nPickerUseCnt > 5){if (pInfo[5] > 0 && pDX06->iLoadPickerOpen06) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	return TRUE;
 }
 
@@ -2208,9 +2208,9 @@ BOOL CCommon::Get_InfoLoadPickerGripOpen(int nPos, int nLine)
 	if (pInfo[0] == 0 && !pDX06->iLoadPickerOpen01) { gAlm.nLDPickerNo = 1; return FALSE; }
 	if (pInfo[1] == 0 && !pDX06->iLoadPickerOpen02) { gAlm.nLDPickerNo = 2; return FALSE; }
 	if (pInfo[2] == 0 && !pDX06->iLoadPickerOpen03) { gAlm.nLDPickerNo = 3; return FALSE; }
-	if (pInfo[3] == 0 && !pDX06->iLoadPickerOpen04) { gAlm.nLDPickerNo = 4; return FALSE; }
-	if (pInfo[4] == 0 && !pDX06->iLoadPickerOpen05) { gAlm.nLDPickerNo = 5; return FALSE; }
-	if (pInfo[5] == 0 && !pDX06->iLoadPickerOpen06) { gAlm.nLDPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3){if (pInfo[3] == 0 && !pDX06->iLoadPickerOpen04) { gAlm.nLDPickerNo = 4; return FALSE; }}
+	if (gData.nPickerUseCnt > 4){if (pInfo[4] == 0 && !pDX06->iLoadPickerOpen05) { gAlm.nLDPickerNo = 5; return FALSE; }}
+	if (gData.nPickerUseCnt > 5){if (pInfo[5] == 0 && !pDX06->iLoadPickerOpen06) { gAlm.nLDPickerNo = 6; return FALSE; }}
 	return TRUE;
 }
 
@@ -2228,9 +2228,9 @@ BOOL CCommon::Get_InfoLoadPickerCmCheck()
 	if (pInfo[0] > 0 && !pDX06->iLoadPickerCMCheck01) { gAlm.nLDPickerNo = 1; return FALSE; }
 	if (pInfo[1] > 0 && !pDX06->iLoadPickerCMCheck02) { gAlm.nLDPickerNo = 2; return FALSE; }
 	if (pInfo[2] > 0 && !pDX06->iLoadPickerCMCheck03) { gAlm.nLDPickerNo = 3; return FALSE; }
-	if (pInfo[3] > 0 && !pDX06->iLoadPickerCMCheck04) { gAlm.nLDPickerNo = 4; return FALSE; }
-	if (pInfo[4] > 0 && !pDX06->iLoadPickerCMCheck05) { gAlm.nLDPickerNo = 5; return FALSE; }
-	if (pInfo[5] > 0 && !pDX06->iLoadPickerCMCheck06) { gAlm.nLDPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (pInfo[3] > 0 && !pDX06->iLoadPickerCMCheck04) { gAlm.nLDPickerNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (pInfo[4] > 0 && !pDX06->iLoadPickerCMCheck05) { gAlm.nLDPickerNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (pInfo[5] > 0 && !pDX06->iLoadPickerCMCheck06) { gAlm.nLDPickerNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2353,9 +2353,9 @@ BOOL CCommon::Get_InfoIndexLoadVacuumOn(int nPos)
 	if (!pDX11->iIndexLoadVac01 && pInfo[0] > 0) { gAlm.nIndexVacNo = 1; return FALSE; }
 	if (!pDX11->iIndexLoadVac02 && pInfo[1] > 0) { gAlm.nIndexVacNo = 2; return FALSE; }
 	if (!pDX11->iIndexLoadVac03 && pInfo[2] > 0) { gAlm.nIndexVacNo = 3; return FALSE; }
-	if (!pDX11->iIndexLoadVac04 && pInfo[3] > 0) { gAlm.nIndexVacNo = 4; return FALSE; }
-	if (!pDX11->iIndexLoadVac05 && pInfo[4] > 0) { gAlm.nIndexVacNo = 5; return FALSE; }
-	if (!pDX11->iIndexLoadVac06 && pInfo[5] > 0) { gAlm.nIndexVacNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (!pDX11->iIndexLoadVac04 && pInfo[3] > 0) { gAlm.nIndexVacNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (!pDX11->iIndexLoadVac05 && pInfo[4] > 0) { gAlm.nIndexVacNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (!pDX11->iIndexLoadVac06 && pInfo[5] > 0) { gAlm.nIndexVacNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2498,9 +2498,9 @@ BOOL CCommon::Get_InfoCapPickerVacOn(int nPos)
 	if (!pDX07->iCapPickerVac01 && pInfo[0] > 0) { gAlm.nCapPickeNo = 1; return FALSE; }
 	if (!pDX07->iCapPickerVac02 && pInfo[1] > 0) { gAlm.nCapPickeNo = 2; return FALSE; }
 	if (!pDX07->iCapPickerVac03 && pInfo[2] > 0) { gAlm.nCapPickeNo = 3; return FALSE; }
-	if (!pDX07->iCapPickerVac04 && pInfo[3] > 0) { gAlm.nCapPickeNo = 4; return FALSE; }
-	if (!pDX07->iCapPickerVac05 && pInfo[4] > 0) { gAlm.nCapPickeNo = 5; return FALSE; }
-	if (!pDX07->iCapPickerVac06 && pInfo[5] > 0) { gAlm.nCapPickeNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (!pDX07->iCapPickerVac04 && pInfo[3] > 0) { gAlm.nCapPickeNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (!pDX07->iCapPickerVac05 && pInfo[4] > 0) { gAlm.nCapPickeNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (!pDX07->iCapPickerVac06 && pInfo[5] > 0) { gAlm.nCapPickeNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2539,9 +2539,9 @@ BOOL CCommon::Get_InfoCapPickerVacOff(int nPos)
 	if (pDX07->iCapPickerVac01 && pInfo[0] == 0) { gAlm.nCapPickeNo = 1; return FALSE; }
 	if (pDX07->iCapPickerVac02 && pInfo[1] == 0) { gAlm.nCapPickeNo = 2; return FALSE; }
 	if (pDX07->iCapPickerVac03 && pInfo[2] == 0) { gAlm.nCapPickeNo = 3; return FALSE; }
-	if (pDX07->iCapPickerVac04 && pInfo[3] == 0) { gAlm.nCapPickeNo = 4; return FALSE; }
-	if (pDX07->iCapPickerVac05 && pInfo[4] == 0) { gAlm.nCapPickeNo = 5; return FALSE; }
-	if (pDX07->iCapPickerVac06 && pInfo[5] == 0) { gAlm.nCapPickeNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (pDX07->iCapPickerVac04 && pInfo[3] == 0) { gAlm.nCapPickeNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (pDX07->iCapPickerVac05 && pInfo[4] == 0) { gAlm.nCapPickeNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (pDX07->iCapPickerVac06 && pInfo[5] == 0) { gAlm.nCapPickeNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2588,9 +2588,9 @@ BOOL CCommon::Get_InfoCapPickerNormal()
 	if (pDX07->iCapPickerTurn01 && pInfo[0] == 0) { gAlm.nCapPickeNo = 1; return FALSE; }
 	if (pDX07->iCapPickerTurn02 && pInfo[1] == 0) { gAlm.nCapPickeNo = 2; return FALSE; }
 	if (pDX07->iCapPickerTurn03 && pInfo[2] == 0) { gAlm.nCapPickeNo = 3; return FALSE; }
-	if (pDX07->iCapPickerTurn04 && pInfo[3] == 0) { gAlm.nCapPickeNo = 4; return FALSE; }
-	if (pDX07->iCapPickerTurn05 && pInfo[4] == 0) { gAlm.nCapPickeNo = 5; return FALSE; }
-	if (pDX07->iCapPickerTurn06 && pInfo[5] == 0) { gAlm.nCapPickeNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (pDX07->iCapPickerTurn04 && pInfo[3] == 0) { gAlm.nCapPickeNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (pDX07->iCapPickerTurn05 && pInfo[4] == 0) { gAlm.nCapPickeNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (pDX07->iCapPickerTurn06 && pInfo[5] == 0) { gAlm.nCapPickeNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2646,9 +2646,9 @@ BOOL CCommon::Get_InfoAssyPickerDown(int nPos)
 		if ((pDX08->iAssyPickerUp01 || !pDX08->iAssyPickerDown01) && pInfo[0] > 0) { gAlm.nAssyPickNo = 1; return FALSE; }
 		if ((pDX08->iAssyPickerUp02 || !pDX08->iAssyPickerDown02) && pInfo[1] > 0) { gAlm.nAssyPickNo = 2; return FALSE; }
 		if ((pDX08->iAssyPickerUp03 || !pDX08->iAssyPickerDown03) && pInfo[2] > 0) { gAlm.nAssyPickNo = 3; return FALSE; }
-		if ((pDX08->iAssyPickerUp04 || !pDX08->iAssyPickerDown04) && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
-		if ((pDX08->iAssyPickerUp05 || !pDX08->iAssyPickerDown05) && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
-		if ((pDX08->iAssyPickerUp06 || !pDX08->iAssyPickerDown06) && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
+		if (gData.nPickerUseCnt > 3)if ((pDX08->iAssyPickerUp04 || !pDX08->iAssyPickerDown04) && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
+		if (gData.nPickerUseCnt > 4)if ((pDX08->iAssyPickerUp05 || !pDX08->iAssyPickerDown05) && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
+		if (gData.nPickerUseCnt > 5)if ((pDX08->iAssyPickerUp06 || !pDX08->iAssyPickerDown06) && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
 	}
 	return TRUE;
 }
@@ -2676,9 +2676,9 @@ BOOL CCommon::Get_InfoAssyPickerGoodDown()
 	if (gData.InfoIndex[1][0] > 0 && gData.InfoAssyPick[0] == 9 && (pDX08->iAssyPickerUp01 || !pDX08->iAssyPickerDown01)) { gAlm.nAssyPickNo = 1; return FALSE; }
 	if (gData.InfoIndex[1][1] > 0 && gData.InfoAssyPick[1] == 9 && (pDX08->iAssyPickerUp02 || !pDX08->iAssyPickerDown02)) { gAlm.nAssyPickNo = 2; return FALSE; }
 	if (gData.InfoIndex[1][2] > 0 && gData.InfoAssyPick[2] == 9 && (pDX08->iAssyPickerUp03 || !pDX08->iAssyPickerDown03)) { gAlm.nAssyPickNo = 3; return FALSE; }
-	if (gData.InfoIndex[1][3] > 0 && gData.InfoAssyPick[3] == 9 && (pDX08->iAssyPickerUp04 || !pDX08->iAssyPickerDown04)) { gAlm.nAssyPickNo = 4; return FALSE; }
-	if (gData.InfoIndex[1][4] > 0 && gData.InfoAssyPick[4] == 9 && (pDX08->iAssyPickerUp05 || !pDX08->iAssyPickerDown05)) { gAlm.nAssyPickNo = 5; return FALSE; }
-	if (gData.InfoIndex[1][5] > 0 && gData.InfoAssyPick[5] == 9 && (pDX08->iAssyPickerUp06 || !pDX08->iAssyPickerDown06)) { gAlm.nAssyPickNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (gData.InfoIndex[1][3] > 0 && gData.InfoAssyPick[3] == 9 && (pDX08->iAssyPickerUp04 || !pDX08->iAssyPickerDown04)) { gAlm.nAssyPickNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (gData.InfoIndex[1][4] > 0 && gData.InfoAssyPick[4] == 9 && (pDX08->iAssyPickerUp05 || !pDX08->iAssyPickerDown05)) { gAlm.nAssyPickNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (gData.InfoIndex[1][5] > 0 && gData.InfoAssyPick[5] == 9 && (pDX08->iAssyPickerUp06 || !pDX08->iAssyPickerDown06)) { gAlm.nAssyPickNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2717,9 +2717,9 @@ BOOL CCommon::Get_InfoAssyPickerVacOn(int nPos)
 	if (!pDX08->iAssyPickerVac01 && pInfo[0] > 0) { gAlm.nAssyPickNo = 1; return FALSE; }
 	if (!pDX08->iAssyPickerVac02 && pInfo[1] > 0) { gAlm.nAssyPickNo = 2; return FALSE; }
 	if (!pDX08->iAssyPickerVac03 && pInfo[2] > 0) { gAlm.nAssyPickNo = 3; return FALSE; }
-	if (!pDX08->iAssyPickerVac04 && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
-	if (!pDX08->iAssyPickerVac05 && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
-	if (!pDX08->iAssyPickerVac06 && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (!pDX08->iAssyPickerVac04 && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (!pDX08->iAssyPickerVac05 && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (!pDX08->iAssyPickerVac06 && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2750,9 +2750,9 @@ BOOL CCommon::Get_InfoAssyPickerVacOff(int nPos)
 	if (pDX08->iAssyPickerVac01 && pInfo[0] > 0) { gAlm.nAssyPickNo = 1; return FALSE; }
 	if (pDX08->iAssyPickerVac02 && pInfo[1] > 0) { gAlm.nAssyPickNo = 2; return FALSE; }
 	if (pDX08->iAssyPickerVac03 && pInfo[2] > 0) { gAlm.nAssyPickNo = 3; return FALSE; }
-	if (pDX08->iAssyPickerVac04 && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
-	if (pDX08->iAssyPickerVac05 && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
-	if (pDX08->iAssyPickerVac06 && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (pDX08->iAssyPickerVac04 && pInfo[3] > 0) { gAlm.nAssyPickNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (pDX08->iAssyPickerVac05 && pInfo[4] > 0) { gAlm.nAssyPickNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (pDX08->iAssyPickerVac06 && pInfo[5] > 0) { gAlm.nAssyPickNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2882,9 +2882,9 @@ BOOL CCommon::Get_InfoUnloadPickerDown(int nPos)
 	if ((pDX10->iUnloadPickerUp01 || !pDX10->iUnloadPickerDown01) && pInfo[0] > 0 ) { gAlm.nUNPickerNo = 1; return FALSE; }
 	if ((pDX10->iUnloadPickerUp02 || !pDX10->iUnloadPickerDown02) && pInfo[1] > 0 ) { gAlm.nUNPickerNo = 2; return FALSE; }
 	if ((pDX10->iUnloadPickerUp03 || !pDX10->iUnloadPickerDown03) && pInfo[2] > 0 ) { gAlm.nUNPickerNo = 3; return FALSE; }
-	if ((pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04) && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
-	if ((pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05) && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
-	if ((pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06) && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if ((pDX10->iUnloadPickerUp04 || !pDX10->iUnloadPickerDown04) && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if ((pDX10->iUnloadPickerUp05 || !pDX10->iUnloadPickerDown05) && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if ((pDX10->iUnloadPickerUp06 || !pDX10->iUnloadPickerDown06) && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2925,9 +2925,9 @@ BOOL CCommon::Get_InfoUnloadPickerVacOn(int nPos)
 	if (!pDX10->iUnloadPickerVac01 && pInfo[0] > 0 ) { gAlm.nUNPickerNo = 1; return FALSE; }
 	if (!pDX10->iUnloadPickerVac02 && pInfo[1] > 0 ) { gAlm.nUNPickerNo = 2; return FALSE; }
 	if (!pDX10->iUnloadPickerVac03 && pInfo[2] > 0 ) { gAlm.nUNPickerNo = 3; return FALSE; }
-	if (!pDX10->iUnloadPickerVac04 && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
-	if (!pDX10->iUnloadPickerVac05 && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
-	if (!pDX10->iUnloadPickerVac06 && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (!pDX10->iUnloadPickerVac04 && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (!pDX10->iUnloadPickerVac05 && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (!pDX10->iUnloadPickerVac06 && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2945,9 +2945,9 @@ BOOL CCommon::Get_InfoUnloadPickerVacOff(int nPos)
 	if (pDX10->iUnloadPickerVac01 && pInfo[0] == 0 ) { gAlm.nUNPickerNo = 1; return FALSE; }
 	if (pDX10->iUnloadPickerVac02 && pInfo[1] == 0 ) { gAlm.nUNPickerNo = 2; return FALSE; }
 	if (pDX10->iUnloadPickerVac03 && pInfo[2] == 0 ) { gAlm.nUNPickerNo = 3; return FALSE; }
-	if (pDX10->iUnloadPickerVac04 && pInfo[3] == 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
-	if (pDX10->iUnloadPickerVac05 && pInfo[4] == 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
-	if (pDX10->iUnloadPickerVac06 && pInfo[5] == 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (pDX10->iUnloadPickerVac04 && pInfo[3] == 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (pDX10->iUnloadPickerVac05 && pInfo[4] == 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (pDX10->iUnloadPickerVac06 && pInfo[5] == 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
 	return TRUE;
 }
 
@@ -2963,9 +2963,9 @@ BOOL CCommon::Get_InfoUnloadPickerCapCheck()
 	if (!pDX10->iUnloadPickerCapChk1 && pInfo[0] > 0 ) { gAlm.nUNPickerNo = 1; return FALSE; }
 	if (!pDX10->iUnloadPickerCapChk2 && pInfo[1] > 0 ) { gAlm.nUNPickerNo = 2; return FALSE; }
 	if (!pDX10->iUnloadPickerCapChk3 && pInfo[2] > 0 ) { gAlm.nUNPickerNo = 3; return FALSE; }
-	if (!pDX10->iUnloadPickerCapChk4 && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
-	if (!pDX10->iUnloadPickerCapChk5 && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
-	if (!pDX10->iUnloadPickerCapChk6 && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
+	if (gData.nPickerUseCnt > 3)if (!pDX10->iUnloadPickerCapChk4 && pInfo[3] > 0 ) { gAlm.nUNPickerNo = 4; return FALSE; }
+	if (gData.nPickerUseCnt > 4)if (!pDX10->iUnloadPickerCapChk5 && pInfo[4] > 0 ) { gAlm.nUNPickerNo = 5; return FALSE; }
+	if (gData.nPickerUseCnt > 5)if (!pDX10->iUnloadPickerCapChk6 && pInfo[5] > 0 ) { gAlm.nUNPickerNo = 6; return FALSE; }
 	return TRUE;
 }
 

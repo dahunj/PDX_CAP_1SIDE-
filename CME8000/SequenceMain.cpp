@@ -3003,6 +3003,7 @@ BOOL CSequenceMain::LoadPicker_Run()
 			if (g_objCommon.Check_Position(AX_LOAD_PICKER_Z, 0) &&
 				g_objCommon.Get_LoadPickerUp() && g_objCommon.Get_LoadPickerCmCheckOff())
 			{
+				if(!m_tLoadPickLoop.Waiting_Time(300)) break;
 				m_tLoadPickLoop.Takt_Save(4, 8);
 				m_tLoadPickLoop.Takt_Start();
 

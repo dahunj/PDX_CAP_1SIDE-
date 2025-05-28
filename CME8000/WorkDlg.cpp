@@ -317,7 +317,9 @@ void CWorkDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 void CWorkDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	KillTimer(0);
-	
+
+
+
 	CCME8000Dlg *pMainDlg = (CCME8000Dlg*)AfxGetApp()->GetMainWnd();
 	EQUIP_DATA *pEquipData = g_objDataManager.Get_pEquipData();
 	DX_DATA_12 *pDX12 = g_objAJinAXL.Get_pDX12();

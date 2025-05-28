@@ -75,6 +75,8 @@ public:
 	void Display_Status();
 	void Save_MotionData(int nTab);
 	void Cancel_MotionData(int nTab);
+
+	BOOL Check_Interlock(int AxisNo);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

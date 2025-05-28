@@ -52,6 +52,7 @@
 #include "CSUdpSocket.h"
 #include "CSClientSocket.h"
 #include "CSGrid.h"
+#include <math.h>
 #ifdef _DEBUG
 	#pragma comment(lib, "CSControlsD.lib")
 	#pragma comment(lib, "CSIniFileD.lib")

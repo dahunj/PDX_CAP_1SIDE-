@@ -301,6 +301,8 @@ void CSetupMotionTabDlg::OnBtnAbsMoveClick(UINT nID)
 	m_stcAbsDist[ID].GetWindowText(strText);
 	double dDist = atof(strText);
 
+	if (Check_Interlock(nStartAx + ID) == FALSE) return;
+
 	g_objAJinAXL.Move_Absolute(nStartAx + ID, dDist);
 
 	m_strLog.Format("[Setup Motion] Move Absolute - %s, %0.3lf", g_objAJinAXL.Get_AxisName(nStartAx + ID), dDist);
@@ -485,3 +487,119 @@ void CSetupMotionTabDlg::Cancel_MotionData(int nTab)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
+{
+	if(AxisNo == AX_TRAY_PICKER_X)
+	{
+		if(!g_objCommon.Check_Position(AX_TRAY_PICKER_Z, 0))
+		{
+			AfxMessageBox("Tray Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+	}
+
+	if(AxisNo == AX_LOAD_STAGE1_X)
+	{
+		double curPosZ1 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE1_Z);
+		double curPosZ2 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE2_Z);
+
+		if(fabs(curPosZ1 - curPosZ2) < 60) 
+		{
+			AfxMessageBox(_T("Load Stage 간 충돌 위험 있습니다."));
+			return FALSE;
+		}			
+	}
+
+
+	if(AxisNo == AX_LOAD_STAGE2_X)
+	{
+		double curPosZ1 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE1_Z);
+		double curPosZ2 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE2_Z);
+
+		if(fabs(curPosZ1 - curPosZ2) < 60) 
+		{
+			AfxMessageBox(_T("Load Stage 간 충돌 위험 있습니다."));
+			return FALSE;
+		}			
+	}
+
+	if(AxisNo == AX_LOAD_PICKER_Y)
+	{		
+		if(!g_objCommon.Check_Position(AX_LOAD_PICKER_Z, 0))
+		{
+			AfxMessageBox("Load Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}		
+	}
+
+	if(AxisNo == AX_CAP_STAGE1_X)
+	{
+		double curPosZ1 = g_objAJinAXL.Get_Position(AX_CAP_STAGE1_Z);
+		double curPosZ2 = g_objAJinAXL.Get_Position(AX_CAP_STAGE2_Z);
+
+		if(fabs(curPosZ1 - curPosZ2) < 65) 
+		{
+			AfxMessageBox(_T("Cap Stage 간 충돌 위험 있습니다."));
+			return FALSE;
+		}			
+	}
+
+	if(AxisNo == AX_CAP_STAGE2_X)
+	{
+		double curPosZ1 = g_objAJinAXL.Get_Position(AX_CAP_STAGE1_Z);
+		double curPosZ2 = g_objAJinAXL.Get_Position(AX_CAP_STAGE2_Z);
+
+		if(fabs(curPosZ1 - curPosZ2) < 65) 
+		{
+			AfxMessageBox(_T("Cap Stage 간 충돌 위험 있습니다."));
+			return FALSE;
+		}			
+	}
+
+	if(AxisNo == AX_CAP_PICKER_Y)
+	{
+		if(!g_objCommon.Check_Position(AX_CAP_PICKER_Z, 0))
+		{
+			AfxMessageBox("Cap Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+	}
+
+	if(AxisNo == AX_ASSY_PICKER_Y)
+	{
+		if(!g_objCommon.Check_Position(AX_ASSY_PICKER_Z, 0))
+		{
+			AfxMessageBox("Assy Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+	}
+
+
+	if(AxisNo == AX_CAP_BUFFER_STAGE_Y)
+	{		
+		///////////////////////////////////////////////////////////
+		if(!g_objCommon.Check_Position(AX_ASSY_PICKER_Z, 0))
+		{
+			AfxMessageBox("Assy Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+
+		if(!g_objCommon.Check_Position(AX_CAP_PICKER_Z, 0))
+		{
+			AfxMessageBox("Cap Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+	}
+
+	if(AxisNo == AX_UNLOAD_PICKER_X)
+	{
+		if(!g_objCommon.Check_Position(AX_UNLOAD_PICKER_Z, 0))
+		{
+			AfxMessageBox("Unload Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
