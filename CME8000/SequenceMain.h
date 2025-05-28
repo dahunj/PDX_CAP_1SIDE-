@@ -245,6 +245,7 @@ public:
 	void Run_Replay();
 	
 	BOOL Is_MainThreadRun() { return m_bThreadMainRun; }
+	BOOL Check_Mode();
 	
 	void Reset_MainRunCase();
 	int *Get_pMainRunCase();

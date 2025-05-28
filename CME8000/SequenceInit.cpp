@@ -145,6 +145,7 @@ void CSequenceInit::Reset_InitialCase()
 UINT CSequenceInit::Thread_Initial(LPVOID lpVoid)
 {
 	while (g_objSequenceInit.m_bThreadInitial) {
+		if (!g_objSequenceInit.Check_Mode()) break;
 		if (!g_objCommon.Check_MainEmgAir()) break;
 		if (!g_objCommon.Check_MainDoor()) break;
 		if (!g_objCommon.Check_TrayFull()) break;
@@ -309,6 +310,17 @@ BOOL CSequenceInit::Initial_MainInit()
 		g_objCommon.Show_Error(1000 + m_niMainInitCase);
 		return FALSE;
 	}
+	return TRUE;
+}
+
+BOOL CSequenceInit::Check_Mode()
+{
+	if(theApp.Get_MainMode() == MODE_MANUAL
+		|| theApp.Get_MainMode() == MODE_SETUP
+		|| theApp.Get_MainMode() == MODE_PARAM
+		|| theApp.Get_MainMode() == MODE_PROHIBIT
+		) return FALSE;
+
 	return TRUE;
 }
 
