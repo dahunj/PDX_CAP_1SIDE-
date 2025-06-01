@@ -242,7 +242,6 @@ void CWorkDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 
 	if (bShow) {
 		// 화면전환시 AVI 와 CAP 간 연결 변수 FALSE로 만들기, 연결되어 있으면 다시 LED에 불 들어옴
-		g_objAviUDP.Set_ConnectStatus (FALSE); 
 		g_objAviUDP.Set_ConnectRequest();
 
 		EQUIP_DATA *pEquipData = g_objDataManager.Get_pEquipData();
@@ -305,10 +304,10 @@ void CWorkDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 		g_objCommon.Locking_MainDoor(FALSE);
 
 		SetTimer(0, 100, NULL);
-	
 
-
-	} else {
+	} 
+	else 
+	{
 		KillTimer(0);
 		m_pWorkInfoDlg->ShowWindow(SW_HIDE);
 	}
@@ -317,8 +316,6 @@ void CWorkDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 void CWorkDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	KillTimer(0);
-
-
 
 	CCME8000Dlg *pMainDlg = (CCME8000Dlg*)AfxGetApp()->GetMainWnd();
 	EQUIP_DATA *pEquipData = g_objDataManager.Get_pEquipData();
@@ -342,7 +339,7 @@ void CWorkDlg::OnTimer(UINT_PTR nIDEvent)
 	Display_Status();
 
 	n_TimerCnt++;
-	if(n_TimerCnt == 10)
+	if(n_TimerCnt == 50)
 	{
 		n_TimerCnt = 0;
 		g_objAviUDP.Set_ConnectStatus(FALSE);
@@ -376,51 +373,27 @@ void CWorkDlg::OnTimer(UINT_PTR nIDEvent)
 				MachineStopLog("RUN_START");
 
  				g_objMES.m_bStart = TRUE;
-// 				//처음 시작할때만 MES 체크 해준다.
-// 				if (g_objMES.m_bMESUse == FALSE || g_objMES.m_nMESSequence == 3) {
-// 					
-// 					if (g_objMES.m_bMESUse==FALSE) g_objMES.m_nMESSequence = 3;
-// 					if (gData.nCapTrayCount == 0) { Set_CapLotIDChange(); }	// Cap Lot 처음 시작할때 Cap Lot Mes 정상 등록 후 정보를 옮겨준다.
-// 					g_objSequenceMain.Begin_MainRunThread();
-// 					pMainDlg->Set_EquipRunStart();
-// 					MachineStopLog("RUN_START");
-// 
-// 				} else {
-// 					if (gData.bMesFirstLot == FALSE) { 
-// 						gData.bMesFirstLot = TRUE;
-// 						g_objMES.m_nMESSequence = 0;
-// 						g_objMES.Set_CapLotChangeRequest(gData.sCapLotID, gData.sOperID);
-// 						CString strLog;
-// 						strLog.Format("[Work Timer] Set_CapLotChangeRequest. (LotID:%s)", gData.sCapLotID);
-// 						g_objLogFile.Save_MesAgentLog(strLog);
-// 
-// 					} else if (g_objMES.m_bMESUse==TRUE && g_objMES.m_nMESSequence==1) {
-// 						g_objCommon.Show_MsgBox(1, "MES 등록이 정상적으로 되지 않았습니다. 다시 시도해주시길 바랍니다.");
-// 
-// 						g_objMES.m_nMESSequence = 0;
-// 						if (gData.bMesFirstLot == TRUE) gData.bMesFirstLot = FALSE;
-// 						pMainDlg->Enable_ModeButton(TRUE);
-// 						SetTimer(0, 100, NULL); m_rdoWorkStop.SetCheck(TRUE); return;
-// 					}
-// 				}
-
-				//g_objSequenceMain.Begin_MainRunThread();
-				//pMainDlg->Set_EquipRunStart();
 
 			} else {
 				g_objCommon.Show_Error(40);		// 초기화 완료 에러
 			}
 
-		} else {				// Auto Running
-			if (g_objMES.m_bMESUse==FALSE) {
-				if (!g_objSequenceMain.Is_MainThreadRun()) {
+		} 
+		else 
+		{				// Auto Running
+			if (g_objMES.m_bMESUse==FALSE) 
+			{
+				if (!g_objSequenceMain.Is_MainThreadRun()) 
+				{
 					g_objLogFile.Save_HandlerLog("[Work Mode] Auto STOP");
 					pMainDlg->Set_CurrentState(STATE_STOP);
 				}
 			}
 		}
 
-	} else if (m_rdoWorkStop.GetCheck()) {
+	} 
+	else if (m_rdoWorkStop.GetCheck())
+	{
 		if (m_bAutoRunning) {	// First AutoStop
 			m_bAutoRunning = FALSE;
 
@@ -441,7 +414,9 @@ void CWorkDlg::OnTimer(UINT_PTR nIDEvent)
 			pMainDlg->Save_EquipRunTime();
 			g_objCommon.Save_MotionPos();
 
-		} else {				// Stop
+		} 
+		else
+		{				// Stop
 			int nState = theApp.Get_MainState();
 			if (nState != STATE_ERROR) g_objCommon.Check_MainEmgAir();
 		}
