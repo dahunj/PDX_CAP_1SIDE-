@@ -268,7 +268,7 @@ public:
 	void Set_StartIndexJig(int nJig) { m_nStartIndexJig = nJig; }
 #endif
 
-	void Test_CSKIM();	// Run Test
+
 
 };
 

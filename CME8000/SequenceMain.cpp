@@ -6196,7 +6196,4 @@ BOOL CSequenceMain::UnloadStage2_Run()
 }
 
 
-void CSequenceMain::Test_CSKIM()
-{
 
-}
