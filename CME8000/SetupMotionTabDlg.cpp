@@ -501,6 +501,17 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 	if(AxisNo == AX_LOAD_STAGE1_X)
 	{
+		if((g_objCommon.Check_Position(AX_LOAD_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_LOAD_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_LOAD_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_LOAD_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}
+
 		double curPosZ1 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE1_Z);
 		double curPosZ2 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE2_Z);
 
@@ -516,6 +527,37 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 			return FALSE;
 		}
 	}
+
+
+	if(AxisNo == AX_LOAD_STAGE2_X)
+	{
+		if((g_objCommon.Check_Position(AX_LOAD_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_LOAD_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_LOAD_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_LOAD_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}
+
+		double curPosZ1 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE1_Z);
+		double curPosZ2 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE2_Z);
+
+		if(fabs(curPosZ1 - curPosZ2) < 60) 
+		{
+			AfxMessageBox(_T("Load Stage 간 충돌 위험 있습니다."));
+			return FALSE;
+		}			
+
+		if(!g_objCommon.Check_Position(AX_LOAD_PICKER_Z, 0))
+		{
+			AfxMessageBox("Load Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
+			return FALSE;
+		}		
+	}
+
 
 
 	if(AxisNo == AX_LOAD_STAGE1_Z)
@@ -556,23 +598,6 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 
 
-	if(AxisNo == AX_LOAD_STAGE2_X)
-	{
-		double curPosZ1 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE1_Z);
-		double curPosZ2 = g_objAJinAXL.Get_Position(AX_LOAD_STAGE2_Z);
-
-		if(fabs(curPosZ1 - curPosZ2) < 60) 
-		{
-			AfxMessageBox(_T("Load Stage 간 충돌 위험 있습니다."));
-			return FALSE;
-		}			
-
-		if(!g_objCommon.Check_Position(AX_LOAD_PICKER_Z, 0))
-		{
-			AfxMessageBox("Load Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
-			return FALSE;
-		}		
-	}
 
 	if(AxisNo == AX_LOAD_PICKER_Y)
 	{		
@@ -585,6 +610,18 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 	if(AxisNo == AX_CAP_STAGE1_X)
 	{
+		if((g_objCommon.Check_Position(AX_CAP_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_CAP_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_CAP_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_CAP_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}	
+
+
 		double curPosZ1 = g_objAJinAXL.Get_Position(AX_CAP_STAGE1_Z);
 		double curPosZ2 = g_objAJinAXL.Get_Position(AX_CAP_STAGE2_Z);
 
@@ -604,6 +641,17 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 	if(AxisNo == AX_CAP_STAGE2_X)
 	{
+		if((g_objCommon.Check_Position(AX_CAP_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_CAP_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_CAP_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_CAP_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}	
+
 		double curPosZ1 = g_objAJinAXL.Get_Position(AX_CAP_STAGE1_Z);
 		double curPosZ2 = g_objAJinAXL.Get_Position(AX_CAP_STAGE2_Z);
 
@@ -706,6 +754,17 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 	if(AxisNo == AX_UNLOAD_STAGE1_Y)
 	{
+		if((g_objCommon.Check_Position(AX_UNLOAD_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_UNLOAD_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_UNLOAD_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_UNLOAD_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}	
+
 		double curPosZ1 = g_objAJinAXL.Get_Position(AX_UNLOAD_STAGE1_Z);
 		double curPosZ2 = g_objAJinAXL.Get_Position(AX_UNLOAD_STAGE2_Z);
 
@@ -724,6 +783,17 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 
 	if(AxisNo == AX_UNLOAD_STAGE2_Y)
 	{
+		if((g_objCommon.Check_Position(AX_UNLOAD_STAGE1_Z, 0) && g_objCommon.Check_Position(AX_UNLOAD_STAGE2_Z, 1))
+			||(g_objCommon.Check_Position(AX_UNLOAD_STAGE1_Z, 1) && g_objCommon.Check_Position(AX_UNLOAD_STAGE2_Z, 0)))
+		{
+			//pass
+		}
+		else
+		{
+			AfxMessageBox(_T("Load Stage Z 위치 확인 바랍니다 (Up & Down)."));
+			return FALSE;
+		}	
+
 		double curPosZ1 = g_objAJinAXL.Get_Position(AX_UNLOAD_STAGE1_Z);
 		double curPosZ2 = g_objAJinAXL.Get_Position(AX_UNLOAD_STAGE2_Z);
 
@@ -777,6 +847,9 @@ BOOL CSetupMotionTabDlg::Check_Interlock(int AxisNo)
 			AfxMessageBox("Unload Picker Z Ready Up 상태가 아닙니다. 확인 후 진행하세요.");
 			return FALSE;
 		}
+
 	}
+
+
 	return TRUE;
 }
