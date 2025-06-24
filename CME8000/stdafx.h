@@ -69,7 +69,7 @@
 	#pragma comment(lib, "CSGridR.lib")
 #endif
 
-#define MAIN_VERSION	_T("V 1.2.5p")
+#define MAIN_VERSION	_T("V 1.2.9p")
 #define ECM_LOG			"D:\\EVMS\\TP\\log\\"
 //
 #define AJIN_BOARD_USE
